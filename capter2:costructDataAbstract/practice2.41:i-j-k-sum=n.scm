@@ -1,0 +1,17 @@
+(define (ijkpairs n)
+  (flatmap (lambda (i)
+             (flatmap (lambda (j)
+                        (map (lambda (k)
+                               (list i j k))
+                             (enumrate-interval 1 (- j 1))))
+                      (enumrate-interval 1 (- i 1))))
+           (enumrate-interval 1 n)))
+
+(define (n-sum? n p)
+  (= n (+ (car p)
+          (cadr p)
+          (caddr p))))
+
+(define (i-j-k-sum n)
+  (filter (lambda (p) (n-sum? n p))
+          (ijkpairs n)))

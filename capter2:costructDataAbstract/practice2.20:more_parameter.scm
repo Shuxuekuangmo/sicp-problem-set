@@ -1,0 +1,8 @@
+(define (same-parity a . b)
+  (let ((remaind (remainder a 2)))
+    (define (iter items)
+      (cond ((null? items) '())
+            ((= remaind (remainder (car items) 2))
+             (cons (car items) (iter (cdr items))))
+            (else (iter (cdr items)))))
+    (cons a (iter b))))
